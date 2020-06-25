@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="925af93a53284597adf9aa78e9b317ad" Name="Diagram1">
+        <EntityTypeShape EntityType="Project_V0212Model.AppConfig" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.Category" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.CategoryTranslationLanguge" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.Language" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.Product_Category" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.Product" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.ProductTranslationLanguage" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project_V0212Model.sysdiagram" Width="1.5" PointX="2.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="Project_V0212Model.FK_CategoryTranslationLanguge_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_V0212Model.FK_Product_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_V0212Model.FK_CategoryTranslationLanguge_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_V0212Model.FK_ProductTranslationLanguage_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_V0212Model.FK_Product_Category_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Project_V0212Model.FK_ProductTranslationLanguage_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Project_V0212Model.Account" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

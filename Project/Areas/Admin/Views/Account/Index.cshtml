@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h2>Hi <b>@Context.User.Identity.Name</b>! Welcome to my first MVC 5 Web App!</h2>
+        <h1>@Context.User.Identity.IsAuthenticated</h1>
+    </div>
+</body>
+</html>
