@@ -7,7 +7,9 @@ namespace Project.Repository.Account
 {
     public interface IAccountRepository : IDisposable
     {
-        void CheckEmailandSendOOP(string email);
+        bool CheckEmail(string email);
         bool CheckOOP(string oop,string email);
+        void SendOOPByEmail(string email);
+        void SendNotifyEmailIncorrectOOP(string email);
     }
 }

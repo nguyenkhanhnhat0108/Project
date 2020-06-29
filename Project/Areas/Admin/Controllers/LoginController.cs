@@ -1,40 +1,43 @@
 ﻿using Project.Repository.Account;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
 namespace Project.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class LoginController : Controller
     {
         readonly IAccountRepository accountRepository;
-        public AccountController(IAccountRepository repository)
+        public LoginController(IAccountRepository repository)
         {
             this.accountRepository = repository;
         }
 
-        // GET: Admin/Account
-        [Authorize]
+        // GET: Admin/Login
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        //GET: Admin/Login
-        [AllowAnonymous]
-        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string email)
+        public ActionResult Index(string email)
         {
             if (ModelState.IsValid)
             {
-               
-                Session["EMAIL"] = email;
-                return RedirectToAction("CheckOOP", "Account");
+                if(accountRepository.CheckEmail(email))
+                {
+                    accountRepository.SendOOPByEmail(email);
+                    Session["EMAIL"] = email;
+                    return RedirectToAction("CheckOOP", "Login");
+                }
+                else
+                {
+                    ViewBag["message"] = "Đăng nhập thất bại";
+                }
             }
             return View();
         }
@@ -45,7 +48,7 @@ namespace Project.Areas.Admin.Controllers
             var email = Session["EMAIL"];
             if (email == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Login");
             }
             return View();
         }
@@ -57,7 +60,7 @@ namespace Project.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var email = Session["EMAIL"];
-                if (accountRepository.CheckOOP(oop,email.ToString()))
+                if (accountRepository.CheckOOP(oop, email.ToString()))
                 {
                     FormsAuthentication.SetAuthCookie(oop, false);
                     return RedirectToAction("Index", "Account");

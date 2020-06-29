@@ -11,22 +11,6 @@ namespace Project.Repository.Account
     {
         private Project_V0212Entities db = new Project_V0212Entities();
 
-        public void CheckEmailandSendOOP(string email)
-        {
-            if (!String.IsNullOrEmpty(email))
-            {
-                var account = db.Accounts.FirstOrDefault(x => x.Email.Equals(email));
-                if(account != null)
-                {
-                    string oop = RandomString(5);
-                    account.OOP = oop;
-                    db.Entry(account).State = EntityState.Modified;
-                    db.SaveChanges();
-                    //SendMail(oop, "aa");
-                }
-            }
-        }
-
         public bool CheckOOP(string oop,string email)
         {
             if (!String.IsNullOrWhiteSpace(oop))
@@ -76,6 +60,30 @@ namespace Project.Repository.Account
             }
 
             return lowerCase ? builder.ToString().ToLower() : builder.ToString();
+        }
+
+        public bool CheckEmail(string email)
+        {
+            var account = db.Accounts.FirstOrDefault(x => x.Email.Equals(email) && x.IsActive == true);
+            return account != null;
+        }
+
+        public void SendOOPByEmail(string email)
+        {
+            var account = db.Accounts.FirstOrDefault(x => x.Email.Equals(email));
+            if (account != null)
+            {
+                string oop = RandomString(5);
+                account.OOP = oop;
+                db.Entry(account).State = EntityState.Modified;
+                db.SaveChanges();
+                SendMail(oop, email);
+            }
+        }
+
+        public void SendNotifyEmailIncorrectOOP(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }
